@@ -4,12 +4,14 @@
 
 import { useState } from "react";
 import { login } from "../services/user.service";
+import { useNavigate } from "react-router-dom";
 
-export default function UserPage() {
+export default function LoginPage() {
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
+    const navigate = useNavigate()
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -19,7 +21,11 @@ export default function UserPage() {
             setError(null);
 
             const res = await login({ username, email });
-            alert(`Login success! token = ${res.username}`);
+            alert(`Login success! token = ${res.data.username}`);
+
+            localStorage.setItem("username", res.data.username)
+            localStorage.setItem("role", res.data.role)
+            navigate("/main", {state: res.data})
         } catch (err) {
             if (err instanceof Error) setError(err.message);
             else setError("Login failed");
@@ -43,7 +49,7 @@ export default function UserPage() {
 
                 <div>
                     <input
-                        type="email"
+                        // type="email"
                         placeholder="email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}

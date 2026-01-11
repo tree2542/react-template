@@ -13,14 +13,11 @@ export async function http<T>(
         ...options,
     });
 
+    const data = await res.json()
     if (!res.ok) {
-        const text = await res.text();
-        throw new Error(text || "Request failed");
+        throw new Error(data || "Request failed");
     }
-
-    console.log("resss >> ", res.json())
-    console.log(Promise<T>)
-    return res.json() as Promise<T>;
+    return data as Promise<T>;
 }
 
 
