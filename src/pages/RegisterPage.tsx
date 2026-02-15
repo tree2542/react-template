@@ -50,59 +50,112 @@ export default function RegisterPage() {
     };
 
     return (
-        <div style={{ padding: 24 }}>
-            <h2>Register</h2>
-            <form onSubmit={handleSubmit}>
-                <div>
+        <div style={{
+            maxWidth: 600,
+            width: "100%",
+            margin: "40px auto",
+            padding: 24,
+            borderRadius: 12,
+            boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
+            background: "#fff",
+        }}>
+            <h2 style={{ color: "black" }}>Register</h2>
+            <form onSubmit={handleSubmit} style={{ padding: 10 }}>
+                <div style={{ marginBottom: 12, padding: "0 12px" }}>
                     <input
                         name="username"
                         placeholder="username"
                         value={form.username}
                         onChange={handleChange}
+                        style={{
+                            width: "100%",
+                            padding: "10px 12px",
+                            borderRadius: 8,
+                            border: "1px solid #bcbabaff",
+                            background: "#bcbabaff",
+                            boxSizing: "border-box",
+                            color: "black"
+                        }}
                     />
                 </div>
 
-                <div>
+                <div style={{ marginBottom: 12, padding: "0 12px" }}>
                     <input
                         name="password"
                         placeholder="password"
                         value={form.password}
                         onChange={handleChange}
+                        style={{
+                            width: "100%",
+                            padding: "10px 12px",
+                            borderRadius: 8,
+                            border: "1px solid #bcbabaff",
+                            background: "#bcbabaff",
+                            boxSizing: "border-box",
+                            color: "black"
+                        }}
                     />
                 </div>
 
-                <div>
+                <div style={{ marginBottom: 12, padding: "0 12px" }}>
                     <input
                         name="firstname"
                         placeholder="firstname"
                         value={form.firstname}
                         onChange={handleChange}
+                        style={{
+                            width: "100%",
+                            padding: "10px 12px",
+                            borderRadius: 8,
+                            border: "1px solid #bcbabaff",
+                            background: "#bcbabaff",
+                            boxSizing: "border-box",
+                            color: "black"
+                        }}
                     />
                 </div>
 
-                <div>
+                <div style={{ marginBottom: 12, padding: "0 12px" }}>
                     <input
                         name="lastname"
                         placeholder="lastname"
                         value={form.lastname}
                         onChange={handleChange}
+                        style={{
+                            width: "100%",
+                            padding: "10px 12px",
+                            borderRadius: 8,
+                            border: "1px solid #bcbabaff",
+                            background: "#bcbabaff",
+                            boxSizing: "border-box",
+                            color: "black"
+                        }}
                     />
                 </div>
 
-                <div>
+                <div style={{ marginBottom: 12, padding: "0 12px" }}>
                     <input
                         name="email"
                         placeholder="email"
                         value={form.email}
                         onChange={handleChange}
+                        style={{
+                            width: "100%",
+                            padding: "10px 12px",
+                            borderRadius: 8,
+                            border: "1px solid #bcbabaff",
+                            background: "#bcbabaff",
+                            boxSizing: "border-box",
+                            color: "black"
+                        }}
                     />
                 </div>
 
-                <button type="submit">
+                <button type="submit" style={{ margin: 10 }}>
                     {loading ? "Loading..." : "Submit"}
                 </button>
             </form>
-             {error && <p style={{ color: "red" }}>{error}</p>}
+            {error && <p style={{ color: "red" }}>{error}</p>}
         </div>
     )
 

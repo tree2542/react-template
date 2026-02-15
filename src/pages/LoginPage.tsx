@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 
 export default function LoginPage() {
     const [username, setUsername] = useState("");
-    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
     const navigate = useNavigate()
@@ -20,14 +20,14 @@ export default function LoginPage() {
             setLoading(true);
             setError(null);
 
-            const res = await login({ username, email });
+            const res = await login({ username, password });
             alert(`Login success! token = ${res.data.username}`);
 
             localStorage.setItem("username", res.data.username)
             localStorage.setItem("role", res.data.role)
-            navigate("/main", {state: res.data})
+            navigate("/main", { state: res.data })
         } catch (err) {
-            if (err instanceof Error) setError(err.message);
+            if (err instanceof Error) setError(`Not found ${username}`);
             else setError("Login failed");
         } finally {
             setLoading(false);
@@ -35,28 +35,55 @@ export default function LoginPage() {
     };
 
     return (
-        <div style={{ padding: 24 }}>
-            <h2>Login</h2>
+        <div style={{
+            maxWidth: 600,
+            width: "100%",
+            margin: "40px auto",
+            padding: 24,
+            borderRadius: 12,
+            boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
+            background: "#fff",
+        }}>
+            <h2 style={{ color: "black" }}>Login</h2>
 
             <form onSubmit={handleSubmit}>
-                <div>
+                <div style={{ marginBottom: 12, padding: "0 12px" }}>
                     <input
                         placeholder="username"
                         value={username}
                         onChange={(e) => setUsername(e.target.value)}
+                        style={{
+                            width: "100%",
+                            padding: "10px 12px",
+                            borderRadius: 8,
+                            border: "1px solid #bcbabaff",
+                            background: "#bcbabaff",
+                            boxSizing: "border-box",
+                            color: "black"
+                        }}
                     />
                 </div>
 
-                <div>
+                <div style={{ marginBottom: 12, padding: "0 12px" }}>
                     <input
                         // type="email"
-                        placeholder="email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
+                        placeholder="password"
+                        value={password}
+                        type="password"
+                        onChange={(e) => setPassword(e.target.value)}
+                        style={{
+                            width: "100%",
+                            padding: "10px 12px",
+                            borderRadius: 8,
+                            border: "1px solid #bcbabaff",
+                            background: "#bcbabaff",
+                            boxSizing: "border-box",
+                            color: "black"
+                        }}
                     />
                 </div>
 
-                <button type="submit" disabled={loading}>
+                <button type="submit" disabled={loading} style={{ margin: 10 }}>
                     {loading ? "Loading..." : "Login"}
                 </button>
             </form>
